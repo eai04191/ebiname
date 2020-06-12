@@ -3,7 +3,7 @@ name: Node CI
 on:
   push:
   schedule:
-    - cron: '0 0 */1 * *'
+    - cron: "0 0 */1 * *"
 
 jobs:
   run:
@@ -11,16 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: npm install, build, and run
-      run: |
-        npm install
-        npm run start
-      env:
-        MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
-        MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-        MASTODON_NAME: ${{ secrets.MASTODON_NAME }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: npm install, build, and run
+        run: |
+          npm install
+          npm run start
+        env:
+          MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          MASTODON_BOT_TOKEN: ${{ secrets.MASTODON_BOT_TOKEN }}
+          MASTODON_NAME: ${{ secrets.MASTODON_NAME }}
