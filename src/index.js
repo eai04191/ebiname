@@ -16,7 +16,7 @@ const body = {
         zwnbsp +
         getRandomEbi(ebiList) +
         zwnbsp +
-        getRandomEbi(ebiList)
+        getRandomEbi(ebiList),
 };
 
 console.log(body);
@@ -25,14 +25,14 @@ const client = axios.create({
     baseURL: `https://${host}/api/v1/`,
     headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-    }
+        Authorization: `Bearer ${token}`,
+    },
 });
 
 client
     .patch(`accounts/update_credentials`, body)
-    .then(res => console.log(res.status))
-    .catch(err => console.error(err));
+    .then((res) => console.log(res.status))
+    .catch((err) => console.error(err));
 
 function getRandomEbi(array) {
     const generator = new MersenneTwister();
