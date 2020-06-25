@@ -3,9 +3,9 @@
 # ebiname
 
 <p>
-<img src="https://rawcdn.githack.com/eai04191/ebiname/a1fcf1c28e8ce640d25da71ecdaeb2d03f9da461/shrimp.svg" height="20">
-<img src="https://rawcdn.githack.com/eai04191/ebiname/a1fcf1c28e8ce640d25da71ecdaeb2d03f9da461/straight_shrimp.svg" height="20">
-<img src="https://rawcdn.githack.com/eai04191/ebiname/a1fcf1c28e8ce640d25da71ecdaeb2d03f9da461/win98_shrimp.svg" height="20">
+<img src="https://raw.githubusercontent.com/eai04191/ebiname/doc/shrimp.svg" height="20">
+<img src="https://raw.githubusercontent.com/eai04191/ebiname/doc/straight_shrimp.svg" height="20">
+<img src="https://raw.githubusercontent.com/eai04191/ebiname/doc/win98_shrimp.svg" height="20">
 </p>
 
 ## 免責事項
