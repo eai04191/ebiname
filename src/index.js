@@ -1,5 +1,6 @@
 const axios = require("axios");
 const MersenneTwister = require("mersenne-twister");
+const generator = new MersenneTwister();
 
 const host = process.env.MASTODON_HOST;
 const token = process.env.MASTODON_TOKEN;
@@ -51,7 +52,6 @@ botClient
     .catch((err) => console.error(err));
 
 function getRandomEmoji(emojiArray) {
-    const generator = new MersenneTwister();
     return emojiArray[Math.floor(generator.random() * emojiArray.length)];
 }
 
