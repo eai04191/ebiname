@@ -8,12 +8,12 @@
                 <rect x="0" y="0" width="44" height="20" style="fill:rgb(85,85,85);fill-rule:nonzero;"/>
                 <rect x="44" y="0" width="97" height="20" style="fill:rgb(68,204,17);fill-rule:nonzero;"/>
             </g>
-            <g>
+            <g font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="110px" fill="white">
                 <g transform="matrix(0.1,0,0,0.1,31.5,14)">
-                    <text x="-82.124px" y="0px" style="font-family:'Verdana', sans-serif;font-size:110px;fill:white;">ebi</text>
+                    <text x="-82.124px" y="0px">ebi</text>
                 </g>
                 <g transform="matrix(0.1,0,0,0.1,91.5,14)">
-                    <text x="-439.543px" y="0px" style="font-family:'Verdana', sans-serif;font-size:110px;fill:white;">:win98_shrimp:</text>
+                    <text x="-439.543px" y="0px">:win98_shrimp:</text>
                 </g>
             </g>
             <g id="win98_shrimp1" serif:id="win98_shrimp" transform="matrix(0.0546875,0,0,0.0546875,5,3)">
