@@ -22,6 +22,7 @@ jobs:
           yarn test
           yarn start
         env:
+          TZ: "Asia/Tokyo"
           MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
           MASTODON_BOT_TOKEN: ${{ secrets.MASTODON_BOT_TOKEN }}
