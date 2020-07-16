@@ -19,6 +19,7 @@ jobs:
       - name: npm install, build, and run
         run: |
           yarn
+          yarn test
           yarn start
         env:
           MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
