@@ -18,8 +18,8 @@ jobs:
           node-version: "12.x"
       - name: npm install, build, and run
         run: |
-          npm install
-          npm run start
+          yarn
+          yarn start
         env:
           MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
