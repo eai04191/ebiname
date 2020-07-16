@@ -1,62 +1,59 @@
+const emoji = require("./util/emoji");
+const fetch = require("./util/fetch");
+const other = require("./util/other");
+const config = require("./util/config");
 const axios = require("axios");
-const MersenneTwister = require("mersenne-twister");
-const generator = new MersenneTwister();
 
-const host = process.env.MASTODON_HOST;
-const token = process.env.MASTODON_TOKEN;
-const name = process.env.MASTODON_NAME;
-const botToken = process.env.MASTODON_BOT_TOKEN;
-const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY;
-const GITHUB_RUN_ID = process.env.GITHUB_RUN_ID;
+const main = async () => {
+    const ebis = emoji
+        .getRandomEmojiArray(config.ebiList, 3)
+        .join(config.zwnbsp);
+    const name = [config.name, ebis].join(config.zwnbsp);
+    const body = {
+        display_name: name,
+    };
 
-const ebiList = ["🦐", ":straight_shrimp:", ":win98_shrimp:"];
-const zwnbsp = String.fromCharCode(parseInt("0xFEFF", 16));
+    const client = axios.create({
+        baseURL: `https://${config.host}/api/v1/`,
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${config.token}`,
+        },
+    });
 
-const ebis = getRandomEmojiArray(ebiList, 3).join(zwnbsp);
+    const botClient = axios.create({
+        baseURL: `https://${config.host}/api/v1/`,
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${config.botToken}`,
+        },
+    });
 
-const body = {
-    display_name: name + zwnbsp + ebis,
+    // えあいのプロフィールを更新する
+    client
+        .patch(`accounts/update_credentials`, body)
+        .then((response) => {
+            console.log("new name: ", body.display_name);
+            console.log("update_credentials status: ", response.status);
+        })
+        .catch((error) => console.error(error));
+
+    // botがメンションする
+    const ghURL = `https://github.com/${config.GITHUB_REPOSITORY}/actions/runs/${config.GITHUB_RUN_ID}`;
+    const orderText = other.isEbisInOrder(ebis)
+        ? "……本当に揃ってた！" +
+          (await fetch.fetchLatestStatus()).diffDays +
+          "日ぶり！ "
+        : " ";
+    const botStatus = `@Eai エビ揃えておいたぞ: ${ebis}
+${orderText}${ghURL}`;
+
+    botClient
+        .post(`statuses`, { status: botStatus })
+        .then((response) => {
+            console.log("bot post: ", botStatus);
+            console.log("post status: ", response.status);
+        })
+        .catch((error) => console.error(error));
 };
-
-const client = axios.create({
-    baseURL: `https://${host}/api/v1/`,
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-    },
-});
-
-const botClient = axios.create({
-    baseURL: `https://${host}/api/v1/`,
-    headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${botToken}`,
-    },
-});
-
-client
-    .patch(`accounts/update_credentials`, body)
-    .then((res) => {
-        console.log("new name: ", body.display_name);
-        console.log("update_credentials status: ", res.status);
-    })
-    .catch((err) => console.error(err));
-
-const botStatus = `エビ揃えておいたで: ${ebis} @Eai https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}`;
-botClient
-    .post(`statuses`, { status: botStatus })
-    .then((res) => {
-        console.log("bot post: ", botStatus);
-        console.log("post status: ", res.status);
-    })
-    .catch((err) => console.error(err));
-
-function getRandomEmoji(emojiArray) {
-    return emojiArray[Math.floor(generator.random() * emojiArray.length)];
-}
-
-function getRandomEmojiArray(emojiArray, amount) {
-    let array = [];
-    [...Array(amount)].map(() => array.push(getRandomEmoji(emojiArray)));
-    return array;
-}
+main();

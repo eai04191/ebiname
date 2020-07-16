@@ -6,11 +6,15 @@
     "author": "eai04191 <eai@mizle.net>",
     "license": "MIT",
     "scripts": {
-        "start": "node ./src/index.js"
+        "start": "node ./src/index.js",
+        "test": "jest"
     },
     "devDependencies": {},
     "dependencies": {
         "axios": "^0.19.0",
+        "dayjs": "^1.8.29",
+        "jest": "^26.1.0",
+        "jest-date-mock": "^1.0.8",
         "mersenne-twister": "^1.1.0"
     }
 }
