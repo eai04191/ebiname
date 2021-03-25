@@ -4,9 +4,7 @@ const dayjs = require("dayjs");
 
 const fetchLatestStatus = async () => {
     const botAcct = "bot@stellaria.network";
-    const q = config.ebiList
-        .map((ebi) => new Array(3).fill(ebi).join(config.zwnbsp))
-        .join(" OR ");
+    const q = "本当に揃ってた！"
 
     return await axios
         .get(`https://notestock.osa-p.net/api/v1/search.json`, {
