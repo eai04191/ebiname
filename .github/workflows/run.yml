@@ -12,14 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "latest"
+      - uses: oven-sh/setup-bun@v1
       - name: npm install, build, and run
         run: |
-          yarn
-          yarn test
-          yarn start
+          bun install
+          bun run test
+          bun run start
         env:
           TZ: "Asia/Tokyo"
           MASTODON_HOST: ${{ secrets.MASTODON_HOST }}
