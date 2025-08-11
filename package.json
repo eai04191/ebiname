@@ -13,10 +13,10 @@
         "@types/bun": "^1.2.20"
     },
     "dependencies": {
-        "axios": "^0.21.1",
-        "dayjs": "^1.8.29",
-        "jest": "^26.1.0",
-        "jest-date-mock": "^1.0.8",
+        "axios": "^1.11.0",
+        "dayjs": "^1.11.13",
+        "jest": "^30.0.5",
+        "jest-date-mock": "^1.0.10",
         "mersenne-twister": "^1.1.0"
     }
 }
