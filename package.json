@@ -9,7 +9,9 @@
         "start": "node ./src/index.js",
         "test": "jest"
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "@types/bun": "^1.2.20"
+    },
     "dependencies": {
         "axios": "^0.21.1",
         "dayjs": "^1.8.29",
